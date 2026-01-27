@@ -14,14 +14,15 @@ const TiendaRouter = () => {
   const { categorias } = useSelector((state) => state.categoria);
 
   const dispatch = useDispatch();
-  
+
   // if (categorias.length == 0) {
   // dispatch(getCategoriaProductos())
   // }
 
   useEffect(() => {
-    dispatch(getCategoriaProductos())
-  }, []);
+    dispatch(getCategoriaProductos());
+    dispatch(getCategorias());
+  }, [dispatch]);
 
   dispatch(getTipoDocumentos())
   dispatch(getTipoUsuarios())

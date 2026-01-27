@@ -9,11 +9,11 @@ import TiendaSocialbar from "../components/TiendaSocialbar";
 import TiendaBanner from "../components/tiendaBanner";
 
 const TiendaTienda = () => {
-  const { productos } = useSelector((state) => state.producto);
-  const { categorias } = useSelector((state) => state.categoria);
+  const { productos = [] } = useSelector((state) => state.producto) || {};
+  const { categorias = [] } = useSelector((state) => state.categoria) || {};
 
   let mostratSlider = true;
-  if (categorias.length > 0) {
+  if (categorias && categorias.length > 0) {
     mostratSlider = false;
   }
 
@@ -40,8 +40,8 @@ const TiendaTienda = () => {
                   <li> Categoria</li>
                 </ul>
                 <div className="row prod-items prod-items-3">
-                  {productos.map((objproducto) => {
-                    return <TiendaProductos objproducto={objproducto} />;
+                  {productos && productos.map((objproducto) => {
+                    return <TiendaProductos key={objproducto.id || objproducto.producto_id} objproducto={objproducto} />;
                   })}
                 </div>
                 <p className="special-more">
