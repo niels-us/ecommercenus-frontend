@@ -1,19 +1,19 @@
-import { AGREGAR_CARRITO, ELIMINAR_CARRITO, RESTAR_CARRITO, SUMAR_CARRITO } from "../types/types"
+import { AGREGAR_CARRITO, ELIMINAR_CARRITO, RESTAR_CARRITO, SUMAR_CARRITO, ELIMINAR_TODO_CARRITO } from "../types/types"
 
 
 
-export const agregarProductoAlCarrito=(objproducto)=>{
-    return{
-        type:AGREGAR_CARRITO,
-        payload:{
-            objproducto:objproducto
-        }
-    }
+export const agregarProductoAlCarrito = (objproducto) => {
+	return {
+		type: AGREGAR_CARRITO,
+		payload: {
+			objproducto: objproducto
+		}
+	}
 };
 
 export const eliminarProductoAlCarrito = (objproducto) => {
 	return {
-		type:ELIMINAR_CARRITO,
+		type: ELIMINAR_CARRITO,
 		payload: {
 			objproducto: objproducto
 		}
@@ -37,3 +37,9 @@ export const restarProductoAlCarrito = (objproducto) => {
 		}
 	};
 };
+
+export const limpiarCarrito = () => {
+	return {
+		type: ELIMINAR_TODO_CARRITO
+	}
+}

@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import TiendaHeader from "../components/TiendaHeader";
 import TiendaFooter from "../components/TiendaFooter";
 import { useSelector } from "react-redux";
 import TiendaProductos from "../components/TiendaProductos";
 // import TiendaModalProducto from "../components/TiendaModalProducto";
 import { NavLink } from "react-router-dom";
-import TiendaSocialbar from "../components/TiendaSocialbar";
+
 import TiendaBanner from "../components/tiendaBanner";
 
 const TiendaTienda = () => {
-  const { productos = [] } = useSelector((state) => state.producto) || {};
+  const { productos = [], bannerVisible } = useSelector((state) => state.producto) || {};
   const { categorias = [] } = useSelector((state) => state.categoria) || {};
 
-  let mostratSlider = true;
-  if (categorias && categorias.length > 0) {
-    mostratSlider = false;
-  }
+  const [visibleCount, setVisibleCount] = useState(12);
+
+  const mostrarMasProductos = (e) => {
+    e.preventDefault();
+    if (visibleCount >= productos.length) {
+      setVisibleCount(12);
+    } else {
+      setVisibleCount((prev) => prev + 12);
+    }
+  };
+
+
 
   return (
     <>
@@ -28,30 +36,36 @@ const TiendaTienda = () => {
           <main id="main" className="site-main">
             <div className="maincont page-styling page-full">
 
-              {mostratSlider ? <TiendaBanner /> : null}
+              {bannerVisible ? <TiendaBanner /> : null}
 
               <div className="container mb60 page-styling row-wrap-container row-wrap-nottl">
                 <p className="maincont-subttl">SPECIAL DEALS</p>
                 <h2 className="mb35 heading-multishop">Nuestros Productos</h2>
-                <ul class="b-crumbs">
+                <ul className="b-crumbs">
                   <li>
                     <NavLink to="/tienda/tienda">Home</NavLink>
                   </li>
                   <li> Categoria</li>
                 </ul>
+
                 <div className="row prod-items prod-items-3">
-                  {productos && productos.map((objproducto) => {
+                  {productos && productos.slice(0, visibleCount).map((objproducto) => {
                     return <TiendaProductos key={objproducto.id || objproducto.producto_id} objproducto={objproducto} />;
                   })}
                 </div>
-                <p className="special-more">
-                  <NavLink
-                    to="/Producto/Producto"
-                    className="special-more-btn"
-                  >
-                    Mostrar Mas Productos
-                  </NavLink>
-                </p>
+                {productos.length > 12 && (
+                  <p className="special-more">
+                    <button
+                      type="button"
+                      onClick={mostrarMasProductos}
+                      className="special-more-btn"
+                    >
+                      {visibleCount >= productos.length
+                        ? "Mostrar Menos"
+                        : "Mostrar Mas Productos"}
+                    </button>
+                  </p>
+                )}
               </div>
 
               <div className="container mb40 page-styling row-wrap-container row-wrap-nottl front-icons">
@@ -112,10 +126,10 @@ const TiendaTienda = () => {
                     className="image-half-img"
                     style={{
                       backgroundImage:
-                        "url(https://mk0cazaofertassmxlbf.kinstacdn.com/wp-content/uploads/2020/05/Intercompras-Hot-180520.png)",
+                        "url(https://placehold.co/1000x500?text=Offer+1)",
                     }}
                   >
-                    <img src="http://placehold.it/1006x498" alt="" />
+                    <img src="https://placehold.co/1000x500?text=Offer+Image" alt="" />
                   </div>
                   <div className="cont image-half-cont">
                     <div className="image-half-inner">
@@ -141,10 +155,10 @@ const TiendaTienda = () => {
                     className="image-half-img"
                     style={{
                       backgroundImage:
-                        "url(https://mk0cazaofertassmxlbf.kinstacdn.com/wp-content/uploads/2020/05/RadioShack-Hor-250520-01.jpg)",
+                        "url(https://placehold.co/1000x500?text=Offer+2)",
                     }}
                   >
-                    <img src="http://placehold.it/1006x498" alt="" />
+                    <img src="https://placehold.co/1000x500?text=Offer+Image" alt="" />
                   </div>
                   <div className="cont image-half-cont">
                     <div className="image-half-inner">
@@ -267,7 +281,7 @@ const TiendaTienda = () => {
                           <i className="fa fa-heart"></i>
                         </p>
                         <h3>
-                          <a href="#">Aliquam erat volutpat</a>
+                          <a href="#!">Aliquam erat volutpat</a>
                         </h3>
                       </div>
                       <p>
@@ -283,7 +297,7 @@ const TiendaTienda = () => {
                           <i className="fa fa-plus-circle"></i>
                         </p>
                         <h3>
-                          <a href="#"> Aenean eu mauris urna</a>
+                          <a href="#!"> Aenean eu mauris urna</a>
                         </h3>
                       </div>
                       <p>
@@ -301,7 +315,7 @@ const TiendaTienda = () => {
                           <i className="fa fa-star"></i>
                         </p>
                         <h3>
-                          <a href="#">Quisque non commodo augue</a>
+                          <a href="#!">Quisque non commodo augue</a>
                         </h3>
                       </div>
                       <p>
@@ -317,7 +331,7 @@ const TiendaTienda = () => {
                           <i className="fa fa-check"></i>
                         </p>
                         <h3>
-                          <a href="#">Maecenas interdum nisl non</a>
+                          <a href="#!">Maecenas interdum nisl non</a>
                         </h3>
                       </div>
                       <p>

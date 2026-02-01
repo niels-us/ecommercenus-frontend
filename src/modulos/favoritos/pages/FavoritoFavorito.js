@@ -13,22 +13,22 @@ const FavoritoFavorito = () => {
         <div id="page" className="site">
             <TiendaHeader />
 
-            <div id="content" class="site-content"><div id="primary" class="content-area width-normal">
-                <main id="main" class="site-main">
-                    <div class="cont maincont">
-                        <h1 class="maincont-ttl">Wishlist</h1>
-                        <ul class="b-crumbs">
+            <div id="content" className="site-content"><div id="primary" className="content-area width-normal">
+                <main id="main" className="site-main">
+                    <div className="cont maincont">
+                        <h1 className="maincont-ttl">Wishlist</h1>
+                        <ul className="b-crumbs">
                             <li>
                                 <NavLink to="/tienda/tienda">Home</NavLink>
                             </li>
                             <li> Wishlist</li>
                         </ul>
 
-                        <div class="page-styling">
-                            <div class="row woocommerce prod-items prod-items-3">
+                        <div className="page-styling">
+                            <div className="row woocommerce prod-items prod-items-3">
                                 {
                                     favorito.productos.map((objproducto) => {
-                                        return <FavoritoProductos objproducto={objproducto} />
+                                        return <FavoritoProductos key={objproducto.id || objproducto.producto_id} objproducto={objproducto} />
                                     })
                                 }
                             </div>

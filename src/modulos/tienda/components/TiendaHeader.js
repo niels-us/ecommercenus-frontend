@@ -7,14 +7,13 @@ import { useDispatch } from "react-redux";
 import { cerrarSesionAction } from "../../../redux/actions/loginAction";
 import { getCategoriaProductos, getProductos } from "../../../redux/actions/productoAction";
 import { getCategorias } from "../../../redux/actions/categoriaAction";
-import { filtroProductos } from "../../../redux/actions/productoAction";
+import { filtroProductos, mostrarBanner, ocultarBanner } from "../../../redux/actions/productoAction";
 
 
 const TiendaHeader = ({ categorias }) => {
   const { favorito } = useSelector((state) => state);
   const { carrito } = useSelector((state) => state);
-  const { producto } = useSelector((state) => state);
-  const { usu_nombre, usu_username } = useSelector((state) => state.login);
+  const { usu_username } = useSelector((state) => state.login);
 
   const dispatch = useDispatch();
 
@@ -57,7 +56,7 @@ const TiendaHeader = ({ categorias }) => {
               <ul className="links_list links_list-align-left align-center-desktop topbar-social">
                 <li>
                   <p className="links_list-value">
-                    <a href="http://facebook.com" target="_blank" rel="nofollow">
+                    <a href="http://facebook.com" target="_blank" rel="nofollow noreferrer">
                       <i className="fa fa-facebook"></i>
                     </a>
                   </p>
@@ -67,7 +66,7 @@ const TiendaHeader = ({ categorias }) => {
                     <a
                       href="mailto:email@email.com"
                       target="_blank"
-                      rel="nofollow"
+                      rel="nofollow noreferrer"
                     >
                       <i className="fa fa-paper-plane"></i>
                     </a>
@@ -75,35 +74,35 @@ const TiendaHeader = ({ categorias }) => {
                 </li>
                 <li>
                   <p className="links_list-value">
-                    <a href="http://pinterest.com" target="_blank" rel="nofollow">
+                    <a href="http://pinterest.com" target="_blank" rel="nofollow noreferrer">
                       <i className="fa fa-pinterest-p"></i>
                     </a>
                   </p>
                 </li>
                 <li>
                   <p className="links_list-value">
-                    <a href="http://youtube.com" target="_blank" rel="nofollow">
+                    <a href="http://youtube.com" target="_blank" rel="nofollow noreferrer">
                       <i className="fa fa-youtube-play"></i>
                     </a>
                   </p>
                 </li>
                 <li>
                   <p className="links_list-value">
-                    <a href="http://twitter.com" target="_blank" rel="nofollow">
+                    <a href="http://twitter.com" target="_blank" rel="nofollow noreferrer">
                       <i className="fa fa-twitter"></i>
                     </a>
                   </p>
                 </li>
                 <li>
                   <p className="links_list-value">
-                    <a href="http://google.com" target="_blank" rel="nofollow">
+                    <a href="http://google.com" target="_blank" rel="nofollow noreferrer">
                       <i className="fa fa-google-plus"></i>
                     </a>
                   </p>
                 </li>
                 <li>
                   <p className="links_list-value">
-                    <a href="http://instagram.com" target="_blank" rel="nofollow">
+                    <a href="http://instagram.com" target="_blank" rel="nofollow noreferrer">
                       <i className="fa fa-instagram"></i>
                     </a>
                   </p>
@@ -118,7 +117,7 @@ const TiendaHeader = ({ categorias }) => {
                     <a
                       href="http://maps.google.com"
                       target="_blank"
-                      rel="nofollow"
+                      rel="nofollow noreferrer"
                     >
                       15th Street, Miami, USA
                     </a>
@@ -133,7 +132,7 @@ const TiendaHeader = ({ categorias }) => {
                 <li>
                   <p className="links_list-label">Teléfono:</p>
                   <p className="links_list-value">
-                    <a href="#">(478)-592-9899</a>
+                    <a href="#!">(478)-592-9899</a>
                   </p>
                 </li>
               </ul>
@@ -184,21 +183,15 @@ const TiendaHeader = ({ categorias }) => {
                   </i>
                 </a>
                 <ul className="h-profile-links">
-                  <li>
-                    <NavLink to="/Cliente/cliente">Registro</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/Login/Login">Login</NavLink>
-                  </li>
-                  <li>
-                    <a href="cart.html">Carrito</a>
-                  </li>
-                  <li>
-                    <a href="compare.html">Compare</a>
-                  </li>
-                  <li>
-                    <a href="wishlist.html">Deseos</a>
-                  </li>
+                  {usu_username ? (
+                    <li>
+                      <NavLink to="/Cliente/Pedidos">Mis Pedidos</NavLink>
+                    </li>
+                  ) : (
+                    <li>
+                      <NavLink to="/Login/Login">Login</NavLink>
+                    </li>
+                  )}
                 </ul>
               </li>
 
@@ -215,14 +208,14 @@ const TiendaHeader = ({ categorias }) => {
                   <div className="widget_shopping_cart_content">
                     <ul className="cart_list">
                       {carrito.productos.map((objproducto) => {
-                        return <TiendaVistaProducto objproducto={objproducto} />;
+                        return <TiendaVistaProducto key={objproducto.id || objproducto.producto_id} objproducto={objproducto} />;
                       })}
                     </ul>
                     <p className="total">
-                      <b>Subtotal:</b> $.{carrito.total}
+                      <b>Subtotal:</b> $.{carrito.total.toFixed(2)}
                     </p>
                     <p className="buttons">
-                      <NavLink to="/Carrito/Carrito" className="button">
+                      <NavLink to="/Carrito/Carrito" className="button" style={{ marginRight: '10px' }}>
                         View cart
                       </NavLink>
 
@@ -243,7 +236,15 @@ const TiendaHeader = ({ categorias }) => {
             <nav id="h-menu" className="h-menu">
               <ul>
                 <li className="menu-item-has-children active">
-                  <NavLink to="/tienda/tienda">Home</NavLink>
+                  <NavLink
+                    to="/tienda/tienda"
+                    onClick={() => {
+                      dispatch(mostrarBanner());
+                      dispatch(getCategoriaProductos()); // Reset products to show all
+                    }}
+                  >
+                    Home
+                  </NavLink>
                   <ul className="sub-menu">
                     {/* <li className="active">
                       <a href="index.html">Home 1</a>
@@ -270,6 +271,7 @@ const TiendaHeader = ({ categorias }) => {
                               to="#"
                               onClick={() => {
                                 handleCategoria(objCategoria.id);
+                                dispatch(ocultarBanner());
                               }}
                             >
                               {objCategoria.nombre}
@@ -318,16 +320,22 @@ const TiendaHeader = ({ categorias }) => {
                   </ul>
                 </li>
                 <li className="menu-item-has-children active">
-                  <a href="#">
-                    <i className="ion-android-person"> {usu_username}</i>
-                  </a>
-
+                  <NavLink to="#">{usu_username ? usu_username : "Cuenta"}</NavLink>
                   <ul className="sub-menu">
-                    <li className="menu-item-has">
-                      <a href="#" onClick={cerrarSesion}>
-                        Cerrar sesión
-                      </a>
-                    </li>
+                    {usu_username ? (
+                      <li>
+                        <a href="#!" onClick={cerrarSesion}>Cerrar Sesión</a>
+                      </li>
+                    ) : (
+                      <>
+                        <li>
+                          <NavLink to="/Login/Login">Login</NavLink>
+                        </li>
+                        <li>
+                          <NavLink to="/Cliente/cliente">Registro</NavLink>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </li>
               </ul>

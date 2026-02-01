@@ -1,4 +1,4 @@
-import { AGREGAR_FAVORITO, ELIMINAR_FAVORITO, RESTAR_FAVORITO, SUMAR_FAVORITO } from "../types/types";
+import { AGREGAR_FAVORITO, ELIMINAR_FAVORITO, RESTAR_FAVORITO, SUMAR_FAVORITO, SET_FAVORITOS, LIMPIAR_FAVORITOS } from "../types/types";
 
 const initialState = {
   productos: [],
@@ -11,7 +11,7 @@ export const favoritoReducer = (state = initialState, action) => {
     case AGREGAR_FAVORITO:
       let copiaProductos = [...state.productos];
       let posicion = copiaProductos.findIndex(
-          (objproducto) => objproducto.id === action.payload.objproducto.id);
+        (objproducto) => objproducto.id === action.payload.objproducto.id);
 
       if (posicion >= 0) {
         copiaProductos[posicion].cantidad += 1;
@@ -33,61 +33,77 @@ export const favoritoReducer = (state = initialState, action) => {
 
     case ELIMINAR_FAVORITO:
       let copiaProduct = [...state.productos];
-			let id = action.payload.objproducto.id
+      let id = action.payload.objproducto.id
 
-			const nuevalista = copiaProduct.filter(objproducto => objproducto.id !== id)
+      const nuevalista = copiaProduct.filter(objproducto => objproducto.id !== id)
 
-			// console.log(nuevalista)
+      // console.log(nuevalista)
 
-			let montoTotal1 = nuevalista.reduce((sumatoria, objproducto) => {
-				return objproducto.precio_venta * objproducto.cantidad + sumatoria;
-			}, 0);
+      let montoTotal1 = nuevalista.reduce((sumatoria, objproducto) => {
+        return objproducto.precio_venta * objproducto.cantidad + sumatoria;
+      }, 0);
 
       return {
-				...state,
-				productos: nuevalista,
-				total: montoTotal1,
-				descuentos: 0
-			};
+        ...state,
+        productos: nuevalista,
+        total: montoTotal1,
+        descuentos: 0
+      };
 
     case RESTAR_FAVORITO:
-        let disminuiralFavorito = [...state.productos];
-        let posdisminuirproductos = disminuiralFavorito.findIndex(
-          (objproducto) => objproducto.id === action.payload.objproducto.id
-        );
-  
-        disminuiralFavorito[posdisminuirproductos].cantidad -= 1;
-  
-        let montoTotal2 = disminuiralFavorito.reduce((sumatoria, objproducto) => {
-          return objproducto.precio_venta * objproducto.cantidad + sumatoria;
-        }, 0);
-  
-    
-        return {
-          ...state,
-          productos: disminuiralFavorito,
-          total: montoTotal2,
-          descuentos:0
-        };
-     case SUMAR_FAVORITO:
-          let aumentarFavorito = [...state.productos];
-          let posaumentarproductos = aumentarFavorito.findIndex(
-            (objproducto) => objproducto.id === action.payload.objproducto.id
-          );
-          aumentarFavorito[posaumentarproductos].cantidad += 1;
-    
-          let montoTotal3 = aumentarFavorito.reduce((sumatoria, objproducto) => {
-            return objproducto.precio_venta * objproducto.cantidad + sumatoria;
-          }, 0);
-    
-          return {
-            ...state,
-            productos: aumentarFavorito,
-            total: montoTotal3,
-            descuentos:0
-    
-          };
-    
+      let disminuiralFavorito = [...state.productos];
+      let posdisminuirproductos = disminuiralFavorito.findIndex(
+        (objproducto) => objproducto.id === action.payload.objproducto.id
+      );
+
+      disminuiralFavorito[posdisminuirproductos].cantidad -= 1;
+
+      let montoTotal2 = disminuiralFavorito.reduce((sumatoria, objproducto) => {
+        return objproducto.precio_venta * objproducto.cantidad + sumatoria;
+      }, 0);
+
+
+      return {
+        ...state,
+        productos: disminuiralFavorito,
+        total: montoTotal2,
+        descuentos: 0
+      };
+    case SUMAR_FAVORITO:
+      let aumentarFavorito = [...state.productos];
+      let posaumentarproductos = aumentarFavorito.findIndex(
+        (objproducto) => objproducto.id === action.payload.objproducto.id
+      );
+      aumentarFavorito[posaumentarproductos].cantidad += 1;
+
+      let montoTotal3 = aumentarFavorito.reduce((sumatoria, objproducto) => {
+        return objproducto.precio_venta * objproducto.cantidad + sumatoria;
+      }, 0);
+
+      return {
+        ...state,
+        productos: aumentarFavorito,
+        total: montoTotal3,
+        descuentos: 0
+
+      };
+
+    case SET_FAVORITOS:
+      return {
+        ...state,
+        productos: action.payload,
+        total: action.payload.reduce((sum, item) => sum + (item.precio_venta * item.cantidad), 0),
+        descuentos: 0
+      };
+
+    case LIMPIAR_FAVORITOS:
+      return {
+        ...state,
+        productos: [],
+        total: 0,
+        descuentos: 0
+      };
+
     default:
       return state;
   }

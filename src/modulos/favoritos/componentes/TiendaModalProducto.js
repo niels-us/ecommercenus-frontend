@@ -1,6 +1,6 @@
 import React from "react";
 import Swal from "sweetalert2";
-import { NavLink, useHistory  } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { agregarProductoAlCarrito } from "../../../redux/actions/carritoAction";
@@ -68,12 +68,17 @@ const TiendaModalProducto = ({ mostrar, setMostrar, objproducto }) => {
                           data-fancybox-group="prod"
                           class="fancy-img"
                           href={
-                            `https://res.cloudinary.com/soluciones-informaticas-nus/` +
-                            objproducto.imagen
+                            objproducto.imagen && objproducto.imagen.startsWith("img/")
+                              ? "/" + objproducto.imagen
+                              : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
                           }
                         >
                           <img
-                            src={`https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen}
+                            src={
+                              objproducto.imagen && objproducto.imagen.startsWith("img/")
+                                ? "/" + objproducto.imagen
+                                : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
+                            }
                             alt=""
                           />
                         </a>
@@ -99,9 +104,7 @@ const TiendaModalProducto = ({ mostrar, setMostrar, objproducto }) => {
                   <p class="prod-price">$ {objproducto.precio_venta}</p>
                   <p class="stock in-stock">{objproducto.stock} UND</p>
                   <p class="prod-excerpt">
-                    Pellentesque habitant morbi tristique senectus et netus et
-                    malesuada fames ac turpis egestas. Vestibulum tortor quam,
-                    feugiat vitae, ultricies eget...
+                    {objproducto.descripcion}
                   </p>
                   <div class="prod-add">
                     <button

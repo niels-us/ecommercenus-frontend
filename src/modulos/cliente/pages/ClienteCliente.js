@@ -6,17 +6,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { registroClienteAction } from "../../../redux/actions/clienteAction";
 import ClienteTipousuario from "../components/ClienteTipousuario";
 import ClienteTipodocumento from "../components/ClienteTipodocumento";
-import { NavLink } from "react-router-dom";
 
 const ClienteCliente = (props) => {
   const dispatch = useDispatch();
-  const { registrado, cargando } = useSelector((state) => state.cliente);
   const { tipousuarios } = useSelector((state) => state.tipousuario);
   const { tipodocumentos } = useSelector((state) => state.tipodocumento);
 
   const [formulario, setFormulario] = useState({
-    // username: formulario.username,
-    // clave:formulario.clave,
+    nombre: "",
+    tipo_usuario_id: "",
+    tipo_documento_id: "",
+    numro_documento: "",
+    direccion: "",
+    telefono: "",
+    email: "",
+    username: "",
+    clave: "",
   });
 
   const handleChange = (e) => {
@@ -53,9 +58,9 @@ const ClienteCliente = (props) => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        props.history.push("/Login/Login"); 
-      }else{
-        props.history.push("/Tienda/Tienda"); 
+        props.history.push("/Login/Login");
+      } else {
+        props.history.push("/Tienda/Tienda");
       }
     });
   };
@@ -64,27 +69,27 @@ const ClienteCliente = (props) => {
     <>
       <div id="page" className="site">
         <TiendaHeader />
-        <div id="content" class="site-content">
-          <div id="primary" class="content-area width-normal">
-            <main id="main" class="site-main">
-              <div class="cont maincont">
-                <h1 class="maincont-ttl">Registro</h1>
-                <ul class="b-crumbs">
+        <div id="content" className="site-content">
+          <div id="primary" className="content-area width-normal">
+            <main id="main" className="site-main">
+              <div className="cont maincont">
+                <h1 className="maincont-ttl">Registro</h1>
+                <ul className="b-crumbs">
                   <li>
                     <a href="index.html">Home</a>
                   </li>
                   <li> Registro</li>
                 </ul>
-                <article class="page-cont">
-                  <div class="page-styling">
-                    <div class="auth-wrap">
-                      <div class="auth-col">
+                <article className="page-cont">
+                  <div className="page-styling">
+                    <div className="auth-wrap">
+                      <div className="auth-col">
                         <h2>Registro Cliente</h2>
                         <form className="formulario" onSubmit={handleSubmit}>
                           <ul>
                             <p>
-                              <label for="nombre">
-                                Nombre <span class="required">*</span>
+                              <label htmlFor="nombre">
+                                Nombre <span className="required">*</span>
                               </label>
                               <input
                                 type="text"
@@ -94,8 +99,8 @@ const ClienteCliente = (props) => {
                               />
                             </p>
                             <p>
-                              <label for="tipo_usuario_id">
-                                Tipo Persona <span class="required">*</span>
+                              <label htmlFor="tipo_usuario_id">
+                                Tipo Persona <span className="required">*</span>
                               </label>
                               <select
                                 className="form-select"
@@ -103,10 +108,11 @@ const ClienteCliente = (props) => {
                                 onChange={handleChange}
                                 name="tipo_usuario_id"
                               >
-                                <option selected>Seleccionar..</option>
+                                <option value="">Seleccionar..</option>
                                 {tipousuarios.map((objtipousuario) => {
                                   return (
                                     <ClienteTipousuario
+                                      key={objtipousuario.id}
                                       objtipousuario={objtipousuario}
                                     />
                                   );
@@ -114,8 +120,8 @@ const ClienteCliente = (props) => {
                               </select>
                             </p>
                             <p>
-                              <label for="tipo_documento_id">
-                                Tipo Documento <span class="required">*</span>
+                              <label htmlFor="tipo_documento_id">
+                                Tipo Documento <span className="required">*</span>
                               </label>
                               <select
                                 className="form-select"
@@ -123,10 +129,11 @@ const ClienteCliente = (props) => {
                                 onChange={handleChange}
                                 name="tipo_documento_id"
                               >
-                                <option selected>Seleccionar..</option>
+                                <option value="">Seleccionar..</option>
                                 {tipodocumentos.map((objtipodocumento) => {
                                   return (
                                     <ClienteTipodocumento
+                                      key={objtipodocumento.id}
                                       objtipodocumento={objtipodocumento}
                                     />
                                   );
@@ -134,8 +141,8 @@ const ClienteCliente = (props) => {
                               </select>
                             </p>
                             <p>
-                              <label for="numro_documento">
-                                N° Documento <span class="required">*</span>
+                              <label htmlFor="numro_documento">
+                                N° Documento <span className="required">*</span>
                               </label>
                               <input
                                 type="text"
@@ -145,8 +152,8 @@ const ClienteCliente = (props) => {
                               />
                             </p>
                             <p>
-                              <label for="direccion">
-                                Dirección <span class="required">*</span>
+                              <label htmlFor="direccion">
+                                Dirección <span className="required">*</span>
                               </label>
                               <input
                                 type="text"
@@ -156,8 +163,8 @@ const ClienteCliente = (props) => {
                               />
                             </p>
                             <p>
-                              <label for="telefono">
-                                Telefono <span class="required">*</span>
+                              <label htmlFor="telefono">
+                                Telefono <span className="required">*</span>
                               </label>
                               <input
                                 type="text"
@@ -167,8 +174,8 @@ const ClienteCliente = (props) => {
                               />
                             </p>
                             <p>
-                              <label for="email">
-                                Email <span class="required">*</span>
+                              <label htmlFor="email">
+                                Email <span className="required">*</span>
                               </label>
                               <input
                                 type="email"
@@ -178,8 +185,8 @@ const ClienteCliente = (props) => {
                               />
                             </p>
                             <p>
-                              <label for="usenname">
-                                Usuario <span class="required">*</span>
+                              <label htmlFor="usenname">
+                                Usuario <span className="required">*</span>
                               </label>
                               <input
                                 type="text"
@@ -189,8 +196,8 @@ const ClienteCliente = (props) => {
                               />
                             </p>
                             <p>
-                              <label for="clave">
-                                Contraseña <span class="required">*</span>
+                              <label htmlFor="clave">
+                                Contraseña <span className="required">*</span>
                               </label>
                               <input
                                 type="text"
@@ -201,7 +208,7 @@ const ClienteCliente = (props) => {
                             </p>
                           </ul>
 
-                          <p class="auth-submit">
+                          <p className="auth-submit">
                             <input
                               type="submit"
                               value="Guardar"
@@ -212,10 +219,10 @@ const ClienteCliente = (props) => {
                               id="rememberme"
                               value="forever"
                             />
-                            <label for="rememberme">Remember me</label>
+                            <label htmlFor="rememberme">Remember me</label>
                           </p>
-                          <p class="auth-lost_password">
-                            <a href="#">Lost your password?</a>
+                          <p className="auth-lost_password">
+                            <a href="#!">Lost your password?</a>
                           </p>
                         </form>
                       </div>

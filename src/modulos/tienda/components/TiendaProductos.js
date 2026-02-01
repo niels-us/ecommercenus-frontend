@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { NavLink, useHistory  } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { agregarProductoAlCarrito } from "../../../redux/actions/carritoAction";
 import { agregarProductoAlfavorito } from "../../../redux/actions/favoritoAction";
 import TiendaModalProducto from "./TiendaModalProducto";
@@ -10,7 +10,7 @@ const TiendaProductos = ({ objproducto }) => {
 
   const dispatch = useDispatch();
   const [mostrar, setMostrar] = useState(false);
-  
+
   let history = useHistory();
 
   const agregarFavorito = () => {
@@ -24,22 +24,20 @@ const TiendaProductos = ({ objproducto }) => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        history.push("/favorito/favorito"); 
+        history.push("/favorito/favorito");
       }
     });
   };
 
   const agregarProducto = () => {
-    dispatch(agregarProductoAlCarrito(objproducto));   
     Swal.fire({
-      title: "Se agrego al Carrito, Deseas ir al Carrito?",
+      title: "¿Deseas agregar este producto al carrito?",
       showDenyButton: true,
-      // showCancelButton: true,
       confirmButtonText: "SI",
       denyButtonText: `NO`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
+        dispatch(agregarProductoAlCarrito(objproducto));
         history.push("/Carrito/Carrito");
       }
     });
@@ -56,7 +54,14 @@ const TiendaProductos = ({ objproducto }) => {
               onClick={() => {
                 setMostrar(true);
               }}>
-              <img src={`https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen} alt="" />
+              <img
+                src={
+                  objproducto.imagen && objproducto.imagen.startsWith("img/")
+                    ? "/" + objproducto.imagen
+                    : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
+                }
+                alt=""
+              />
             </NavLink>
             <div className="prod-i-actions">
               <p className="prod-li-favorites">

@@ -11,15 +11,12 @@ import {
 } from "../../../redux/actions/carritoAction";
 
 const TiendaModalProducto = ({ mostrar, setMostrar, objproducto }) => {
-  
+
   let history = useHistory();
 
   const carrito = useSelector((state) => state.carrito);
 
-  let objcarrito;
-  carrito.productos.map((obj) => {
-    objcarrito = obj;
-  });
+  const objcarrito = carrito.productos.find((obj) => obj.id === objproducto.id);
 
   const dispatch = useDispatch();
   const agregarProducto = () => {
@@ -69,28 +66,33 @@ const TiendaModalProducto = ({ mostrar, setMostrar, objproducto }) => {
       <Modal size="xl" show={mostrar} onHide={() => setMostrar(false)}>
         <Modal.Header closeButton>
           {/* <Modal.Title>
-            <h5 class="card-title">{objproducto.nombre}.</h5>
+            <h5 className="card-title">{objproducto.nombre}.</h5>
           </Modal.Title> */}
         </Modal.Header>
 
         <Modal.Body>
-          <div class="cont maincont w-100">
+          <div className="cont maincont w-100">
             <article>
-              <div class="prod w-100">
-                <div class="prod-slider-wrap prod-slider-shown">
-                  <div class="flexsli prod-slider" id="prod-slider">
-                    <ul class="slides">
+              <div className="prod w-100">
+                <div className="prod-slider-wrap prod-slider-shown">
+                  <div className="flexsli prod-slider" id="prod-slider">
+                    <ul className="slides">
                       <li>
                         <a
                           data-fancybox-group="prod"
-                          class="fancy-img"
+                          className="fancy-img"
                           href={
-                            `https://res.cloudinary.com/soluciones-informaticas-nus/` +
-                            objproducto.imagen
+                            objproducto.imagen && objproducto.imagen.startsWith("img/")
+                              ? "/" + objproducto.imagen
+                              : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
                           }
                         >
                           <img
-                            src={`https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen}
+                            src={
+                              objproducto.imagen && objproducto.imagen.startsWith("img/")
+                                ? "/" + objproducto.imagen
+                                : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
+                            }
                             alt=""
                           />
                         </a>
@@ -98,55 +100,54 @@ const TiendaModalProducto = ({ mostrar, setMostrar, objproducto }) => {
                     </ul>
                   </div>
                 </div>
-                <div class="prod-cont">
-                  <div class="prod-rating-wrap">
-                    <p data-rating="4" class="prod-rating">
-                      <i class="rating-ico" title="1"></i>
-                      <i class="rating-ico" title="2"></i>
-                      <i class="rating-ico" title="3"></i>
-                      <i class="rating-ico" title="4"></i>
-                      <i class="rating-ico" title="5"></i>
+                <div className="prod-cont">
+                  <div className="prod-rating-wrap">
+                    <p data-rating="4" className="prod-rating">
+                      <i className="rating-ico" title="1"></i>
+                      <i className="rating-ico" title="2"></i>
+                      <i className="rating-ico" title="3"></i>
+                      <i className="rating-ico" title="4"></i>
+                      <i className="rating-ico" title="5"></i>
                     </p>
-                    <p class="prod-rating-count">7</p>
+                    <p className="prod-rating-count">7</p>
                   </div>
-                  <p class="prod-categs">
-                    <a href="#">Lighting</a>, <a href="#">Tools</a>
+                  <p className="prod-categs">
+                    <a href="#!">Lighting</a>, <a href="#!">Tools</a>
                   </p>
                   <h2>{objproducto.nombre}</h2>
-                  <p class="prod-price">$ {objproducto.precio_venta}</p>
-                  <p class="stock in-stock">{objproducto.stock} UND</p>
-                  <p class="prod-excerpt">
-                    Pellentesque habitant morbi tristique senectus et netus et
-                    malesuada fames ac turpis egestas. Vestibulum tortor quam,
-                    feugiat vitae, ultricies eget...
+                  <p className="prod-price">$ {objproducto.precio_venta}</p>
+                  <p className="stock in-stock">{objproducto.stock} UND</p>
+                  <p className="prod-excerpt">
+                    {objproducto.descripcion}
                   </p>
-                  <div class="prod-add">
+                  <div className="prod-add">
                     <button
                       type="submit"
                       onClick={agregarProducto}
-                      class="button"
+                      className="button"
                     >
-                      <i class="icon ion-android-cart"></i> Add to cart
+                      <i className="icon ion-android-cart"></i> Add to cart
                     </button>
-                    <p class="qnt-wrap prod-li-qnt">
-                      <a href="#" class="qnt-plus prod-li-plus">
+                    <p className="qnt-wrap prod-li-qnt">
+                      <a href="#!" className="qnt-plus prod-li-plus">
                         <i
-                          class="icon ion-arrow-up-b"
+                          className="icon ion-arrow-up-b"
                           onClick={sumarProducto}
                         ></i>
                       </a>
                       <input
                         type="text"
                         value={objcarrito ? objcarrito.cantidad : 0}
+                        readOnly
                       />
-                      <a href="#" class="qnt-minus prod-li-minus">
+                      <a href="#!" className="qnt-minus prod-li-minus">
                         <i
-                          class="icon ion-arrow-down-b"
+                          className="icon ion-arrow-down-b"
                           onClick={restarProducto}
                         ></i>
                       </a>
                     </p>
-                    <div class="prod-li-favorites">
+                    <div className="prod-li-favorites">
                       <NavLink to="#" className="hover-label prod-addbtn">
                         {/* <NavLink to="#" className="hover-label add_to_wishlist"> */}
                         <i
@@ -157,9 +158,9 @@ const TiendaModalProducto = ({ mostrar, setMostrar, objproducto }) => {
                       </NavLink>
                       {/* <a
                         href="wishlist.html"
-                        class="hover-label add_to_wishlist"
+                        className="hover-label add_to_wishlist"
                       >
-                        <i class="icon ion-heart"></i>
+                        <i className="icon ion-heart"></i>
                         <span>Add to Wishlist</span>
                       </a> */}
                     </div>

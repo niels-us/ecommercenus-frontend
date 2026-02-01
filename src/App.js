@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,11 +9,20 @@ import TiendaRouter from "./modulos/tienda/TiendaRouter";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store";
 import CarritoRouter from "./modulos/carrito/CarritoRouter";
-import ClienteRouter from "./modulos/cliente/ClienteRouter";
-import LoginRouter from "./modulos/login/LoginRouter";
 import ProductoRouter from "./modulos/productos/ProductoRouter";
 import FavoritoRouter from "./modulos/favoritos/FavoritoRouter";
-const App = () => {  
+import ClientePedidos from "./modulos/cliente/pages/ClientePedidos";
+import ClienteCliente from "./modulos/cliente/pages/ClienteCliente";
+import LoginLogin from "./modulos/login/pages/LoginLogin";
+import { validarTokenAction } from "./redux/actions/loginAction";
+const App = () => {
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      store.dispatch(validarTokenAction(token));
+    }
+  }, []);
 
   return (
     <>
@@ -22,8 +31,9 @@ const App = () => {
           <Switch>
             <Route path="/tienda" component={TiendaRouter} />
             <Route path="/carrito" component={CarritoRouter} />
-            <Route path="/Cliente" component={ClienteRouter} />
-            <Route path="/Login" component={LoginRouter} />
+            <Route path="/Cliente/cliente" component={ClienteCliente} />
+            <Route path="/Cliente/Pedidos" component={ClientePedidos} />
+            <Route path="/Login/Login" component={LoginLogin} />
             <Route path="/Producto" component={ProductoRouter} />
             <Route path="/favorito" component={FavoritoRouter} />
             <Redirect to="/tienda/tienda" />

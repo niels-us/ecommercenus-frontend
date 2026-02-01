@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import TiendaFooter from "../../tienda/components/TiendaFooter";
 import TiendaHeader from "../../tienda/components/TiendaHeader";
@@ -10,14 +10,16 @@ const LoginLogin = (props) => {
   const dispatch = useDispatch();
   const { autenticado, usu_nombre } = useSelector((state) => state.login);
 
-  if (autenticado) {
-    props.history.push("/tienda/tienda");
-    Swal.fire({
-      icon: "success",
-      title: "Éxito!",
-      text: `Bienvenido ${usu_nombre} `,
-    });
-  }
+  useEffect(() => {
+    if (autenticado) {
+      props.history.push("/tienda/tienda");
+      Swal.fire({
+        icon: "success",
+        title: "Éxito!",
+        text: `Bienvenido ${usu_nombre} `,
+      });
+    }
+  }, [autenticado, props.history, usu_nombre]);
 
 
   const [formulario, setFormulario] = useState({
@@ -38,7 +40,7 @@ const LoginLogin = (props) => {
   };
 
   const handleLogin = () => {
- 
+
   };
 
   return (
@@ -46,30 +48,29 @@ const LoginLogin = (props) => {
       <div id="page" className="site">
         <TiendaHeader />
 
-        <div id="content" class="site-content">
-          <div id="primary" class="content-area width-normal">
-            <main id="main" class="site-main">
-              <div class="cont maincont">
-                <h1 class="maincont-ttl">Login</h1>
-                <ul class="b-crumbs">
+        <div id="content" className="site-content">
+          <div id="primary" className="content-area width-normal">
+            <main id="main" className="site-main">
+              <div className="cont maincont">
+                <h1 className="maincont-ttl">Login</h1>
+                <ul className="b-crumbs">
                   <li>
                     <NavLink to="/Tienda/Tienda">Inicio</NavLink>
                   </li>
                   <li> Login</li>
                 </ul>
-                <article class="page-cont">
-                  <div class="page-styling">
-                    <div class="auth-wrap">
-                      <div class="auth-col">
+                <article className="page-cont">
+                  <div className="page-styling">
+                    <div className="auth-wrap">
+                      <div className="auth-col">
                         <h2>Login</h2>
                         <form
-                          className="formulario"
+                          className="formulario login"
                           onSubmit={handleSubmit}
-                          class="login"
                         >
                           <p>
-                            <label for="usenname">
-                              Usuario <span class="required">*</span>
+                            <label htmlFor="usenname">
+                              Usuario <span className="required">*</span>
                             </label>
                             <input
                               type="text"
@@ -79,8 +80,8 @@ const LoginLogin = (props) => {
                             />
                           </p>
                           <p>
-                            <label for="password">
-                              Password <span class="required">*</span>
+                            <label htmlFor="password">
+                              Password <span className="required">*</span>
                             </label>
                             <input
                               type="password"
@@ -90,7 +91,7 @@ const LoginLogin = (props) => {
                             />
                           </p>
 
-                          <p class="auth-submit">
+                          <p className="auth-submit">
                             <input
                               type="submit"
                               value="Login"
@@ -101,10 +102,10 @@ const LoginLogin = (props) => {
                               id="rememberme"
                               value="forever"
                             />
-                            <label for="rememberme">Remember me</label>
+                            <label htmlFor="rememberme">Remember me</label>
                           </p>
-                          <p class="auth-lost_password">
-                            <a href="#">Lost your password?</a>
+                          <p className="auth-lost_password">
+                            <a href="#!">Lost your password?</a>
                           </p>
                         </form>
                       </div>

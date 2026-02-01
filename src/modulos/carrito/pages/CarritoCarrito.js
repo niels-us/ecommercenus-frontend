@@ -16,24 +16,24 @@ const CarritoCarrito = (props) => {
 
       <TiendaHeader categorias={categorias} />
 
-      <div id="content" class="site-content">
-        <div id="primary" class="content-area width-normal">
-          <main id="main" class="site-main">
-            <div class="cont maincont">
-              <h1 class="maincont-ttl">Carrito</h1>
-              <ul class="b-crumbs">
+      <div id="content" className="site-content">
+        <div id="primary" className="content-area width-normal">
+          <main id="main" className="site-main">
+            <div className="cont maincont">
+              <h1 className="maincont-ttl">Carrito</h1>
+              <ul className="b-crumbs">
                 <li>
                   <NavLink to="/Tienda/Tienda">Inicico</NavLink>
                 </li>
                 <li>Carrito</li>
               </ul>
-              <div class="page-styling">
-                <div class="woocommerce prod-litems section-list">
+              <div className="page-styling">
+                <div className="woocommerce prod-litems section-list">
 
                   {
                     carrito.productos.map((objproducto) => {
 
-                      return <CarritoProductos objproducto={objproducto} />
+                      return <CarritoProductos key={objproducto.id || objproducto.producto_id} objproducto={objproducto} />
 
 
                     })
@@ -43,19 +43,19 @@ const CarritoCarrito = (props) => {
 
                 </div>
 
-                <div class="cart-actions">
-                  <div class="coupon">
+                <div className="cart-actions">
+                  <div className="coupon">
                     <input type="text" placeholder="Coupon code" />
-                    <input type="submit" class="button" value="Apply" />
+                    <input type="submit" className="button" value="Apply" />
                   </div>
-                  <div class="cart-collaterals">
+                  <div className="cart-collaterals">
 
-                    <NavLink to="/Carrito/TipoPago" class="checkout-button button">
+                    <NavLink to="/Carrito/TipoPago" className="checkout-button button">
                       Proceed to checkout
                     </NavLink>
-                    <div class="order-total">
-                      <p class="cart-totals-ttl">Total</p>
-                      <p class="cart-totals-val">$.{carrito.total} </p>
+                    <div className="order-total">
+                      <p className="cart-totals-ttl">Total</p>
+                      <p className="cart-totals-val">$.{carrito.total.toFixed(2)} </p>
                     </div>
                   </div>
                 </div>

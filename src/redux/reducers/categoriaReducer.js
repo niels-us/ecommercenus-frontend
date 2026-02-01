@@ -5,7 +5,7 @@ import {
 } from "../types/types";
 
 let initialState = {
-  categorias:[],
+  categorias: [],
   cargandoCategorias: false,
 };
 
@@ -23,11 +23,11 @@ export const categoriaReducer = (state = initialState, action) => {
         cargandoCategorias: false
       };
     case SET_CATEGORIAS:
-      console.log(action)
+      //console.log(action)
       return {
         ...state,
         categorias: action.payload.categorias
-        
+
       };
 
     default:

@@ -1,4 +1,4 @@
-import { AGREGAR_CARRITO, ELIMINAR_CARRITO, RESTAR_CARRITO, SUMAR_CARRITO } from "../types/types";
+import { AGREGAR_CARRITO, ELIMINAR_CARRITO, RESTAR_CARRITO, SUMAR_CARRITO, ELIMINAR_TODO_CARRITO } from "../types/types";
 
 const initialState = {
   productos: [],
@@ -11,7 +11,7 @@ export const carritoReducer = (state = initialState, action) => {
     case AGREGAR_CARRITO:
       let copiaProductos = [...state.productos];
       let posicion = copiaProductos.findIndex(
-          (objproducto) => objproducto.id === action.payload.objproducto.id);
+        (objproducto) => objproducto.id === action.payload.objproducto.id);
 
       if (posicion >= 0) {
         copiaProductos[posicion].cantidad += 1;
@@ -33,61 +33,71 @@ export const carritoReducer = (state = initialState, action) => {
 
     case ELIMINAR_CARRITO:
       let copiaProduct = [...state.productos];
-			let id = action.payload.objproducto.id
+      let id = action.payload.objproducto.id
 
-			const nuevalista = copiaProduct.filter(objproducto => objproducto.id !== id)
+      const nuevalista = copiaProduct.filter(objproducto => objproducto.id !== id)
 
-			console.log(nuevalista)
+      console.log(nuevalista)
 
-			let montoTotal1 = nuevalista.reduce((sumatoria, objproducto) => {
-				return objproducto.precio_venta * objproducto.cantidad + sumatoria;
-			}, 0);
+      let montoTotal1 = nuevalista.reduce((sumatoria, objproducto) => {
+        return objproducto.precio_venta * objproducto.cantidad + sumatoria;
+      }, 0);
 
       return {
-				...state,
-				productos: nuevalista,
-				total: montoTotal1,
-				descuentos: 0
-			};
+        ...state,
+        productos: nuevalista,
+        total: montoTotal1,
+        descuentos: 0
+      };
 
     case RESTAR_CARRITO:
-        let disminuiralcarrito = [...state.productos];
-        let posdisminuirproductos = disminuiralcarrito.findIndex(
-          (objproducto) => objproducto.id === action.payload.objproducto.id
-        );
-  
-        disminuiralcarrito[posdisminuirproductos].cantidad -= 1;
-  
-        let montoTotal2 = disminuiralcarrito.reduce((sumatoria, objproducto) => {
-          return objproducto.precio_venta * objproducto.cantidad + sumatoria;
-        }, 0);
-  
-    
-        return {
-          ...state,
-          productos: disminuiralcarrito,
-          total: montoTotal2,
-          descuentos:0
-        };
-     case SUMAR_CARRITO:
-          let aumentarcarrito = [...state.productos];
-          let posaumentarproductos = aumentarcarrito.findIndex(
-            (objproducto) => objproducto.id === action.payload.objproducto.id
-          );
-          aumentarcarrito[posaumentarproductos].cantidad += 1;
-    
-          let montoTotal3 = aumentarcarrito.reduce((sumatoria, objproducto) => {
-            return objproducto.precio_venta * objproducto.cantidad + sumatoria;
-          }, 0);
-    
-          return {
-            ...state,
-            productos: aumentarcarrito,
-            total: montoTotal3,
-            descuentos:0
-    
-          };
-    
+      let disminuiralcarrito = [...state.productos];
+      let posdisminuirproductos = disminuiralcarrito.findIndex(
+        (objproducto) => objproducto.id === action.payload.objproducto.id
+      );
+
+      disminuiralcarrito[posdisminuirproductos].cantidad -= 1;
+
+      let montoTotal2 = disminuiralcarrito.reduce((sumatoria, objproducto) => {
+        return objproducto.precio_venta * objproducto.cantidad + sumatoria;
+      }, 0);
+
+
+      return {
+        ...state,
+        productos: disminuiralcarrito,
+        total: montoTotal2,
+        descuentos: 0
+      };
+    case SUMAR_CARRITO:
+      let aumentarcarrito = [...state.productos];
+      let posaumentarproductos = aumentarcarrito.findIndex(
+        (objproducto) => objproducto.id === action.payload.objproducto.id
+      );
+      if (aumentarcarrito[posaumentarproductos].cantidad < aumentarcarrito[posaumentarproductos].stock) {
+        aumentarcarrito[posaumentarproductos].cantidad += 1;
+      }
+
+      let montoTotal3 = aumentarcarrito.reduce((sumatoria, objproducto) => {
+        return objproducto.precio_venta * objproducto.cantidad + sumatoria;
+      }, 0);
+
+      return {
+        ...state,
+        productos: aumentarcarrito,
+        total: montoTotal3,
+        descuentos: 0
+
+      };
+
+    case ELIMINAR_TODO_CARRITO:
+      return {
+        ...state,
+        productos: [],
+        total: 0,
+        descuentos: 0
+      };
+
     default:
       return state;
   }

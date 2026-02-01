@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { NavLink, useHistory  } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import TiendaModalProducto from "./TiendaModalProducto";
 import { agregarProductoAlCarrito } from "../../../redux/actions/carritoAction";
-import { eliminarProductoAlFavorito, restarProductoAlFavorito, sumarProductoAlFavorito } from "../../../redux/actions/favoritoAction";
+import { eliminarProductoAlFavorito } from "../../../redux/actions/favoritoAction";
 
 const FavoritoProductos = ({ objproducto }) => {
 
@@ -35,18 +35,23 @@ const FavoritoProductos = ({ objproducto }) => {
 
     return (
         <>
-            <article class="cf-sm-6 cf-md-4 cf-lg-4 col-xs-6 col-sm-6 col-md-4 col-lg-4 sectgl-item  sectgl-item">
-                <div class="sectgl prod-i">
-                    <div class="prod-i-top">
-                        <a class="prod-i-img" href="product.html">
-                            <img src={`https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen} alt="" />
-                        </a>
-                        <div class="prod-i-actions">
-                            <div class="prod-i-actions-in">
-                                <p class="prod-quickview">
-                                    <a href="#" class="hover-label"><i class="icon ion-close-round" onClick={eliminarProducto} ></i> <span>Remove from Wishlist</span></a>
+            <article className="cf-sm-6 cf-md-4 cf-lg-4 col-xs-6 col-sm-6 col-md-4 col-lg-4 sectgl-item  sectgl-item">
+                <div className="sectgl prod-i">
+                    <div className="prod-i-top">
+                        <img
+                            src={
+                                objproducto.imagen && objproducto.imagen.startsWith("img/")
+                                    ? "/" + objproducto.imagen
+                                    : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
+                            }
+                            alt=""
+                        />
+                        <div className="prod-i-actions">
+                            <div className="prod-i-actions-in">
+                                <p className="prod-quickview">
+                                    <a href="#!" className="hover-label"><i className="icon ion-close-round" onClick={eliminarProducto} ></i> <span>Remove from Wishlist</span></a>
                                 </p>
-                                <p class="prod-quickview">
+                                <p className="prod-quickview">
                                     <NavLink
                                         to="#"
                                         className="hover-label"
@@ -54,12 +59,12 @@ const FavoritoProductos = ({ objproducto }) => {
                                             setMostrar(true);
                                         }}
                                     >
-                                        <i class="icon ion-plus"></i>
+                                        <i className="icon ion-plus"></i>
                                         <span>Quick View</span>
                                     </NavLink>
-                                    {/* <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a> */}
+                                    {/* <a href="#!" className="hover-label quick-view"><i className="icon ion-plus"></i><span>Quick View</span></a> */}
                                 </p>
-                                <p class="prod-i-cart">
+                                <p className="prod-i-cart">
                                     <NavLink to="#" className="hover-label prod-addbtn">
                                         <i
                                             className="icon ion-android-cart"
@@ -67,20 +72,20 @@ const FavoritoProductos = ({ objproducto }) => {
                                         ></i>
                                         <span>Add to Cart</span>
                                     </NavLink>
-                                    {/* <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a> */}
+                                    {/* <a href="#!" className="hover-label prod-addbtn"><i className="icon ion-android-cart"></i><span>Add to Cart</span></a> */}
                                 </p>
-                                {/* <p class="prod-li-compare">
-                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                {/* <p className="prod-li-compare">
+                                    <a href="compare.html" className="hover-label prod-li-compare-btn"><span>Compare</span><i className="icon ion-arrow-swap"></i></a>
                                 </p> */}
                             </div>
                         </div>
                     </div>
-                    <div class="prod-i-bot">
-                        <div class="prod-i-info">
-                            <p class="prod-i-price">$ {objproducto.precio_venta}</p>
-                            <p class="prod-i-categ"><a href="catalog-gallery.html">Lighting</a></p>
+                    <div className="prod-i-bot">
+                        <div className="prod-i-info">
+                            <p className="prod-i-price">$ {objproducto.precio_venta}</p>
+                            <p className="prod-i-categ"><a href="catalog-gallery.html">Lighting</a></p>
                         </div>
-                        <h3 class="prod-i-ttl"><a href="product.html">{objproducto.nombre}</a></h3>
+                        <h3 className="prod-i-ttl"><a href="product.html">{objproducto.nombre}</a></h3>
                     </div>
 
                 </div>

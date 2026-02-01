@@ -8,7 +8,14 @@ const TiendaVistaProducto = ({ objproducto }) => {
           &times;
         </a>
         <a href="#">
-          <img src={`https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen} alt="" />
+          <img
+            src={
+              objproducto.imagen && objproducto.imagen.startsWith("img/")
+                ? "/" + objproducto.imagen
+                : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
+            }
+            alt=""
+          />
           {objproducto.nombre}
         </a>
         <span className="quantity">
@@ -16,8 +23,8 @@ const TiendaVistaProducto = ({ objproducto }) => {
         </span>
       </li>
 
-     
-    
+
+
     </>
   );
 };
