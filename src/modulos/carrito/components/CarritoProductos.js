@@ -142,7 +142,7 @@ const CarritoProductos = ({ objproducto }) => {
             {objproducto.marca && (
               <div className="info-item">
                 <span className="info-label">Brand:</span>
-                <span className="info-value"><a href="#">{objproducto.marca}</a></span>
+                <span className="info-value">{objproducto.marca}</span>
               </div>
             )}
             {objproducto.peso && (
@@ -160,19 +160,19 @@ const CarritoProductos = ({ objproducto }) => {
             {objproducto.color && (
               <div className="info-item">
                 <span className="info-label">Color:</span>
-                <span className="info-value"><a href="#">{objproducto.color}</a></span>
+                <span className="info-value">{objproducto.color}</span>
               </div>
             )}
             {objproducto.pais && (
               <div className="info-item">
                 <span className="info-label">Pais:</span>
-                <span className="info-value"><a href="#">{objproducto.pais}</a></span>
+                <span className="info-value">{objproducto.pais}</span>
               </div>
             )}
             {objproducto.material && (
               <div className="info-item">
                 <span className="info-label">Material:</span>
-                <span className="info-value"><a href="#">{objproducto.material}</a></span>
+                <span className="info-value">{objproducto.material}</span>
               </div>
             )}
             <div className="info-item">
@@ -189,7 +189,7 @@ const CarritoProductos = ({ objproducto }) => {
 const getImageUrl = (img) => {
   if (!img) return "";
   if (img.startsWith("http") || img.startsWith("/")) return img;
-  if (img.startsWith("img/")) return "/" + img;
+  if (img.includes("img/") || img.includes("static/")) return "/" + img;
   return `https://res.cloudinary.com/soluciones-informaticas-nus/${img}`;
 };
 

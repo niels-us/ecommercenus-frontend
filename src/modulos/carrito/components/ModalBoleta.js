@@ -166,11 +166,7 @@ const ModalBoleta = ({ mostrar, setMostrar }) => {
                         <tr key={objProducto.id}>
                           <td>
                             <img
-                              src={
-                                objProducto.imagen && objProducto.imagen.startsWith("img/")
-                                  ? "/" + objProducto.imagen
-                                  : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objProducto.imagen
-                              }
+                              src={getImageUrl(objProducto.imagen)}
                               alt=""
                               width="50"
                             />
@@ -266,6 +262,13 @@ const ModalBoleta = ({ mostrar, setMostrar }) => {
       </Modal >
     </>
   );
+};
+
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http") || img.startsWith("/")) return img;
+  if (img.includes("img/") || img.includes("static/")) return "/" + img;
+  return `https://res.cloudinary.com/soluciones-informaticas-nus/${img}`;
 };
 
 export default ModalBoleta;

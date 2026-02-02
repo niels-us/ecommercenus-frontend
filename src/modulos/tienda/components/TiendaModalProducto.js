@@ -171,7 +171,7 @@ const TiendaModalProducto = ({ mostrar, setMostrar, objproducto }) => {
 const getImageUrl = (img) => {
   if (!img) return "";
   if (img.startsWith("http") || img.startsWith("/")) return img;
-  if (img.startsWith("img/")) return "/" + img;
+  if (img.includes("img/") || img.includes("static/")) return "/" + img;
   return `https://res.cloudinary.com/soluciones-informaticas-nus/${img}`;
 };
 
