@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/ecommercenus-frontend/static/css/main.2b91024a.css",
+    "main.css": "/ecommercenus-frontend/static/css/main.e383f7d9.css",
     "main.js": "/ecommercenus-frontend/static/js/main.89121117.js",
     "static/media/fontawesome-webfont.svg": "/ecommercenus-frontend/static/media/fontawesome-webfont.3fe9d36ed88cf3aeea1f.svg",
     "static/media/ionicons.svg?v=2.0.0": "/ecommercenus-frontend/static/media/ionicons.ee5b17dfd3f2d12ff4e2.svg",
@@ -19,11 +19,11 @@
     "static/media/MontserratBlack.woff2": "/ecommercenus-frontend/static/media/MontserratBlack.ddb5a5116bba32d2d39c.woff2",
     "static/media/fancybox_loading@2x.gif": "/ecommercenus-frontend/static/media/fancybox_loading@2x.d8f0a9727c7b19e2f0db.gif",
     "index.html": "/ecommercenus-frontend/index.html",
-    "main.2b91024a.css.map": "/ecommercenus-frontend/static/css/main.2b91024a.css.map",
+    "main.e383f7d9.css.map": "/ecommercenus-frontend/static/css/main.e383f7d9.css.map",
     "main.89121117.js.map": "/ecommercenus-frontend/static/js/main.89121117.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b91024a.css",
+    "static/css/main.e383f7d9.css",
     "static/js/main.89121117.js"
   ]
 }
