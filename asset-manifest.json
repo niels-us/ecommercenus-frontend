@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.35bdf98c.css",
-    "main.js": "/static/js/main.739aa307.js",
-    "static/media/fontawesome-webfont.svg": "/static/media/fontawesome-webfont.3fe9d36ed88cf3aeea1f.svg",
-    "static/media/ionicons.svg?v=2.0.0": "/static/media/ionicons.ee5b17dfd3f2d12ff4e2.svg",
-    "static/media/ionicons.ttf?v=2.0.0": "/static/media/ionicons.1fa6a1e8581aaedf7344.ttf",
-    "static/media/fontawesome-webfont.ttf": "/static/media/fontawesome-webfont.bfcf94e00816b7cfccc7.ttf",
-    "static/media/ionicons.eot?v=2.0.0": "/static/media/ionicons.68e3a4f9a8d8c679b4ae.eot",
-    "static/media/MontserratBlack.svg": "/static/media/MontserratBlack.5753b9df77c3e8ed152d.svg",
-    "static/media/fontawesome-webfont.woff": "/static/media/fontawesome-webfont.b09f4960e5ffa8e0ef92.woff",
-    "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.7f77840e46fa6103b494.eot",
-    "static/media/ionicons.woff?v=2.0.0": "/static/media/ionicons.0b4ad6170d93c4aa91ee.woff",
-    "static/media/fontawesome-webfont.woff2": "/static/media/fontawesome-webfont.af6df524c7d052f637e3.woff2",
-    "static/media/MontserratBlack.otf": "/static/media/MontserratBlack.a621d898c74f2031b365.otf",
-    "static/media/MontserratBlack.eot": "/static/media/MontserratBlack.20b9aacddb01721145bc.eot",
-    "static/media/MontserratBlack.woff": "/static/media/MontserratBlack.d69efebb6ab83db1e13a.woff",
-    "static/media/radio1.png": "/static/media/radio1.670d62dc77f318f79122.png",
-    "static/media/MontserratBlack.woff2": "/static/media/MontserratBlack.ddb5a5116bba32d2d39c.woff2",
-    "static/media/fancybox_loading@2x.gif": "/static/media/fancybox_loading@2x.d8f0a9727c7b19e2f0db.gif",
-    "index.html": "/index.html",
-    "main.35bdf98c.css.map": "/static/css/main.35bdf98c.css.map",
-    "main.739aa307.js.map": "/static/js/main.739aa307.js.map"
+    "main.css": "/ecommercenus-frontend/static/css/main.2b91024a.css",
+    "main.js": "/ecommercenus-frontend/static/js/main.b88c0ee9.js",
+    "static/media/fontawesome-webfont.svg": "/ecommercenus-frontend/static/media/fontawesome-webfont.3fe9d36ed88cf3aeea1f.svg",
+    "static/media/ionicons.svg?v=2.0.0": "/ecommercenus-frontend/static/media/ionicons.ee5b17dfd3f2d12ff4e2.svg",
+    "static/media/ionicons.ttf?v=2.0.0": "/ecommercenus-frontend/static/media/ionicons.1fa6a1e8581aaedf7344.ttf",
+    "static/media/fontawesome-webfont.ttf": "/ecommercenus-frontend/static/media/fontawesome-webfont.bfcf94e00816b7cfccc7.ttf",
+    "static/media/ionicons.eot?v=2.0.0": "/ecommercenus-frontend/static/media/ionicons.68e3a4f9a8d8c679b4ae.eot",
+    "static/media/MontserratBlack.svg": "/ecommercenus-frontend/static/media/MontserratBlack.5753b9df77c3e8ed152d.svg",
+    "static/media/fontawesome-webfont.woff": "/ecommercenus-frontend/static/media/fontawesome-webfont.b09f4960e5ffa8e0ef92.woff",
+    "static/media/fontawesome-webfont.eot": "/ecommercenus-frontend/static/media/fontawesome-webfont.7f77840e46fa6103b494.eot",
+    "static/media/ionicons.woff?v=2.0.0": "/ecommercenus-frontend/static/media/ionicons.0b4ad6170d93c4aa91ee.woff",
+    "static/media/fontawesome-webfont.woff2": "/ecommercenus-frontend/static/media/fontawesome-webfont.af6df524c7d052f637e3.woff2",
+    "static/media/MontserratBlack.otf": "/ecommercenus-frontend/static/media/MontserratBlack.a621d898c74f2031b365.otf",
+    "static/media/MontserratBlack.eot": "/ecommercenus-frontend/static/media/MontserratBlack.20b9aacddb01721145bc.eot",
+    "static/media/MontserratBlack.woff": "/ecommercenus-frontend/static/media/MontserratBlack.d69efebb6ab83db1e13a.woff",
+    "static/media/radio1.png": "/ecommercenus-frontend/static/media/radio1.670d62dc77f318f79122.png",
+    "static/media/MontserratBlack.woff2": "/ecommercenus-frontend/static/media/MontserratBlack.ddb5a5116bba32d2d39c.woff2",
+    "static/media/fancybox_loading@2x.gif": "/ecommercenus-frontend/static/media/fancybox_loading@2x.d8f0a9727c7b19e2f0db.gif",
+    "index.html": "/ecommercenus-frontend/index.html",
+    "main.2b91024a.css.map": "/ecommercenus-frontend/static/css/main.2b91024a.css.map",
+    "main.b88c0ee9.js.map": "/ecommercenus-frontend/static/js/main.b88c0ee9.js.map"
   },
   "entrypoints": [
-    "static/css/main.35bdf98c.css",
-    "static/js/main.739aa307.js"
+    "static/css/main.2b91024a.css",
+    "static/js/main.b88c0ee9.js"
   ]
 }
