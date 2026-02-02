@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { NavLink, useHistory } from "react-router-dom";
 import { agregarProductoAlCarrito } from "../../../redux/actions/carritoAction";
@@ -112,7 +112,7 @@ const TiendaProductos = ({ objproducto }) => {
             <div className="prod-i-info">
               <p className="prod-i-price">${objproducto.precio_venta}</p>
               <p className="prod-i-categ">
-                <a href="catalog-gallery.html"></a>
+                {/* <a href="catalog-gallery.html"></a> */}
               </p>
             </div>
             <h3 className="prod-i-ttl">

@@ -27,7 +27,9 @@ const App = () => {
   return (
     <>
       <Provider store={store}>
-        <Router basename={process.env.PUBLIC_URL}>
+        {/* Usamos basename solo si estamos en produccion para que corra bien en GitHub Pages.
+            En desarrollo (localhost) usamos "/" para evitar problemas con la propiedad "homepage" del package.json */}
+        <Router basename={process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL : ''}>
           <Switch>
             <Route path="/tienda" component={TiendaRouter} />
             <Route path="/carrito" component={CarritoRouter} />

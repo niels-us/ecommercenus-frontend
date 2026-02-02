@@ -1,7 +1,7 @@
 import React from "react";
 import Swal from "sweetalert2";
 import { NavLink, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { eliminarProductoAlCarrito, restarProductoAlCarrito, sumarProductoAlCarrito } from "../../../redux/actions/carritoAction";
 import { agregarProductoAlfavorito } from "../../../redux/actions/favoritoAction";
 
@@ -50,7 +50,7 @@ const CarritoProductos = ({ objproducto }) => {
           <div className="prod-li-cont">
             <div className="prod-li-ttl-wrap">
               <p>
-                <a href="#"></a>
+                {/* <a href="#"></a> */}
               </p>
               <h3>
                 <a href="product.html">{objproducto.nombre}</a>
@@ -64,13 +64,13 @@ const CarritoProductos = ({ objproducto }) => {
               </div>
               <div className="prod-li-qnt-wrap">
                 <p className="qnt-wrap prod-li-qnt">
-                  <a href="#" className="qnt-plus prod-li-plus">
-                    <i className="icon ion-arrow-up-b" onClick={sumarProducto}></i>
-                  </a>
+                  <button type="button" className="qnt-plus prod-li-plus" onClick={sumarProducto}>
+                    <i className="icon ion-arrow-up-b"></i>
+                  </button>
                   <input type="text" value={objproducto.cantidad} readOnly />
-                  <a href="#" className="qnt-minus prod-li-minus">
-                    <i className="icon ion-arrow-down-b" onClick={restarProducto}></i>
-                  </a>
+                  <button type="button" className="qnt-minus prod-li-minus" onClick={restarProducto}>
+                    <i className="icon ion-arrow-down-b"></i>
+                  </button>
                 </p>
               </div>
               <div className="prod-li-total-wrap">
@@ -91,10 +91,10 @@ const CarritoProductos = ({ objproducto }) => {
               <p className="prod-li-rating-count">32</p>
             </div>
             <p className="prod-li-add">
-              <a href="#" className="button hover-label prod-addbtn" onClick={(e) => { e.preventDefault(); eliminarProducto(); }}>
+              <button type="button" className="button hover-label prod-addbtn" onClick={(e) => { e.preventDefault(); eliminarProducto(); }}>
                 <i className="icon ion-close-round" ></i>
                 <span>Remove</span>
-              </a>
+              </button>
             </p>
             {/* <p className="prod-li-compare">
               <a href="compare.html" className="hover-label prod-li-compare-btn">
@@ -103,10 +103,10 @@ const CarritoProductos = ({ objproducto }) => {
               </a>
             </p> */}
             <p className="prod-quickview">
-              <a href="#" className="hover-label quick-view">
+              <button type="button" className="hover-label quick-view">
                 <i className="icon ion-plus"></i>
                 <span>Quick View</span>
-              </a>
+              </button>
             </p>
             <div className="prod-li-favorites">
               <NavLink to="#" className="hover-label add_to_wishlist">
@@ -123,10 +123,10 @@ const CarritoProductos = ({ objproducto }) => {
               </a> */}
             </div>
             <p className="prod-li-information">
-              <a href="#" className="hover-label">
+              <button type="button" className="hover-label">
                 <i className="icon ion-more"></i>
                 <span>Show Information</span>
-              </a>
+              </button>
             </p>
           </div>
           <p className="prod-li-badge">

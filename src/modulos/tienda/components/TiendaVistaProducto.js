@@ -4,10 +4,10 @@ const TiendaVistaProducto = ({ objproducto }) => {
   return (
     <>
       <li>
-        <a href="#" className="remove">
+        <span className="remove">
           &times;
-        </a>
-        <a href="#">
+        </span>
+        <span>
           <img
             src={
               getImageUrl(objproducto.imagen)
@@ -15,7 +15,7 @@ const TiendaVistaProducto = ({ objproducto }) => {
             alt=""
           />
           {objproducto.nombre}
-        </a>
+        </span>
         <span className="quantity">
           {objproducto.cantidad} &times; ${objproducto.precio_venta}
         </span>
