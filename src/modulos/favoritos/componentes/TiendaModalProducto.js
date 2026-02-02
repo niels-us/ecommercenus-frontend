@@ -66,19 +66,11 @@ const TiendaModalProducto = ({ mostrar, setMostrar, objproducto }) => {
                       <li>
                         <a
                           data-fancybox-group="prod"
-                          class="fancy-img"
-                          href={
-                            objproducto.imagen && objproducto.imagen.startsWith("img/")
-                              ? "/" + objproducto.imagen
-                              : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
-                          }
+                          className="fancy-img"
+                          href={getImageUrl(objproducto.imagen)}
                         >
                           <img
-                            src={
-                              objproducto.imagen && objproducto.imagen.startsWith("img/")
-                                ? "/" + objproducto.imagen
-                                : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
-                            }
+                            src={getImageUrl(objproducto.imagen)}
                             alt=""
                           />
                         </a>
@@ -151,6 +143,13 @@ const TiendaModalProducto = ({ mostrar, setMostrar, objproducto }) => {
       </Modal>
     </>
   );
+};
+
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http") || img.startsWith("/")) return img;
+  if (img.includes("img/") || img.includes("static/")) return "/" + img;
+  return `https://res.cloudinary.com/soluciones-informaticas-nus/${img}`;
 };
 
 export default TiendaModalProducto;
