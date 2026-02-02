@@ -74,7 +74,7 @@ const TiendaTienda = () => {
                     <div className="iconbox-item iconbox-i">
                       <div className="iconbox-i-top">
                         <p className="iconbox-i-img withimg">
-                          <img src="img/1/front/1.png" alt="" />
+                          <img src="https://placehold.co/64x64?text=Search" alt="" />
                         </p>
                         <h3>Search!</h3>
                       </div>
@@ -90,7 +90,7 @@ const TiendaTienda = () => {
                     <div className="iconbox-item iconbox-i">
                       <div className="iconbox-i-top">
                         <p className="iconbox-i-img withimg">
-                          <img src="img/1/front/2.png" alt="" />
+                          <img src="https://placehold.co/64x64?text=Order" alt="" />
                         </p>
                         <h3>Order!</h3>
                       </div>
@@ -105,7 +105,7 @@ const TiendaTienda = () => {
                     <div className="iconbox-item iconbox-i">
                       <div className="iconbox-i-top">
                         <p className="iconbox-i-img withimg">
-                          <img src="img/1/front/3.png" alt="" />
+                          <img src="https://placehold.co/64x64?text=Get+It" alt="" />
                         </p>
                         <h3>Get it!</h3>
                       </div>

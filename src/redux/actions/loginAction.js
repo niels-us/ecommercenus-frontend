@@ -124,8 +124,20 @@ export const cerrarSesionAction = () => {
 export const validarTokenAction = (token) => {
   return async (dispatch) => {
     try {
+      if (!token) {
+        throw new Error("Token no proporcionado");
+      }
       let payload = token.split(".")[1];
-      let payloadDecoded = atob(payload);
+      if (!payload) {
+        throw new Error("Token con formato incorrecto");
+      }
+
+      let base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+      while (base64.length % 4) {
+        base64 += '=';
+      }
+
+      let payloadDecoded = atob(base64);
       let payloadJSON = JSON.parse(payloadDecoded);
 
       dispatch({

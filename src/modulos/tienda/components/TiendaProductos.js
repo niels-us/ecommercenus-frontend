@@ -55,11 +55,7 @@ const TiendaProductos = ({ objproducto }) => {
                 setMostrar(true);
               }}>
               <img
-                src={
-                  objproducto.imagen && objproducto.imagen.startsWith("img/")
-                    ? "/" + objproducto.imagen
-                    : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
-                }
+                src={objproducto.imagen}
                 alt=""
               />
             </NavLink>
