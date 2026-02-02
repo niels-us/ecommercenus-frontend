@@ -142,7 +142,7 @@ const TiendaHeader = ({ categorias }) => {
 
         <div className="site-header header_sticky">
           <p className="h-logo">
-            <NavLink to="/Tienda/Tienda">
+            <NavLink to="/tienda/tienda">
               <img src={logo} alt="MultiShop" />
             </NavLink>
           </p>
