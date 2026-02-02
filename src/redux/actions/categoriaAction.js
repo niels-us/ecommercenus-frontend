@@ -1,6 +1,6 @@
-import { URL_BACKEND } from "../../environments/environments";
+// import { URL_BACKEND } from "../../environments/environments";
 import { FIN_CARGANDO_CATEGORIAS, INICIO_CARGANDO_CATEGORIAS, SET_CATEGORIAS } from "../types/types";
-import axios from 'axios';
+// import axios from 'axios';
 import { CATEGORIAS } from "../../mock/mockData";
 
 export const setCargandoCategorias = () => {

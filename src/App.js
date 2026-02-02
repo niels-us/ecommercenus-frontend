@@ -27,7 +27,7 @@ const App = () => {
   return (
     <>
       <Provider store={store}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route path="/tienda" component={TiendaRouter} />
             <Route path="/carrito" component={CarritoRouter} />
