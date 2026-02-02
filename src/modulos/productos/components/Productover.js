@@ -1,13 +1,13 @@
 import React from "react";
 
-const Productover = ({objproducto}) => {
+const Productover = ({ objproducto }) => {
   return (
     <>
       <article class="cf-sm-6 cf-md-6 cf-lg-3 col-xs-6 col-sm-6 col-md-6 col-lg-3 sectgl-item sectgl-item">
         <div class="sectgl prod-i">
           <div class="prod-i-top">
             <a class="prod-i-img" href="product.html">
-              <img src={`https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen} alt="" />
+              <img src={getImageUrl(objproducto.imagen)} alt="" />
             </a>
             <div class="prod-i-actions">
               <div class="prod-i-actions-in">
@@ -56,6 +56,13 @@ const Productover = ({objproducto}) => {
       </article>{" "}
     </>
   );
+};
+
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http") || img.startsWith("/")) return img;
+  if (img.startsWith("img/")) return "/" + img;
+  return `https://res.cloudinary.com/soluciones-informaticas-nus/${img}`;
 };
 
 export default Productover;

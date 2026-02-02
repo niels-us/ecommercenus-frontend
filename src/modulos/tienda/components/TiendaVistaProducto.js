@@ -10,9 +10,7 @@ const TiendaVistaProducto = ({ objproducto }) => {
         <a href="#">
           <img
             src={
-              objproducto.imagen && objproducto.imagen.startsWith("img/")
-                ? "/" + objproducto.imagen
-                : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
+              getImageUrl(objproducto.imagen)
             }
             alt=""
           />
@@ -22,11 +20,15 @@ const TiendaVistaProducto = ({ objproducto }) => {
           {objproducto.cantidad} &times; ${objproducto.precio_venta}
         </span>
       </li>
-
-
-
     </>
   );
+};
+
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http") || img.startsWith("/")) return img;
+  if (img.startsWith("img/")) return "/" + img;
+  return `https://res.cloudinary.com/soluciones-informaticas-nus/${img}`;
 };
 
 export default TiendaVistaProducto;

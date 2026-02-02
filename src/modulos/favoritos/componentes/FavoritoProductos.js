@@ -39,11 +39,7 @@ const FavoritoProductos = ({ objproducto }) => {
                 <div className="sectgl prod-i">
                     <div className="prod-i-top">
                         <img
-                            src={
-                                objproducto.imagen && objproducto.imagen.startsWith("img/")
-                                    ? "/" + objproducto.imagen
-                                    : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
-                            }
+                            src={getImageUrl(objproducto.imagen)}
                             alt=""
                         />
                         <div className="prod-i-actions">
@@ -98,6 +94,13 @@ const FavoritoProductos = ({ objproducto }) => {
             </article>
         </>
     );
+};
+
+const getImageUrl = (img) => {
+    if (!img) return "";
+    if (img.startsWith("http") || img.startsWith("/")) return img;
+    if (img.startsWith("img/")) return "/" + img;
+    return `https://res.cloudinary.com/soluciones-informaticas-nus/${img}`;
 };
 
 export default FavoritoProductos;

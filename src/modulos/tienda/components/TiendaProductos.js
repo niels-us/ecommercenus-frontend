@@ -55,7 +55,7 @@ const TiendaProductos = ({ objproducto }) => {
                 setMostrar(true);
               }}>
               <img
-                src={objproducto.imagen}
+                src={getImageUrl(objproducto.imagen)}
                 alt=""
               />
             </NavLink>
@@ -137,6 +137,13 @@ const TiendaProductos = ({ objproducto }) => {
       </article>
     </>
   );
+};
+
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http") || img.startsWith("/")) return img;
+  if (img.startsWith("img/")) return "/" + img;
+  return `https://res.cloudinary.com/soluciones-informaticas-nus/${img}`;
 };
 
 export default TiendaProductos;

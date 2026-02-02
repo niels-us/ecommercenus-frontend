@@ -43,11 +43,7 @@ const CarritoProductos = ({ objproducto }) => {
         <div className="prod-li-inner">
           <a href="product.html" className="prod-li-img">
             <img
-              src={
-                objproducto.imagen && objproducto.imagen.startsWith("img/")
-                  ? "/" + objproducto.imagen
-                  : `https://res.cloudinary.com/soluciones-informaticas-nus/` + objproducto.imagen
-              }
+              src={getImageUrl(objproducto.imagen)}
               alt=""
             />
           </a>
@@ -188,6 +184,13 @@ const CarritoProductos = ({ objproducto }) => {
       </article>
     </>
   );
+};
+
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http") || img.startsWith("/")) return img;
+  if (img.startsWith("img/")) return "/" + img;
+  return `https://res.cloudinary.com/soluciones-informaticas-nus/${img}`;
 };
 
 export default CarritoProductos;
